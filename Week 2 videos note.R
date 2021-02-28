@@ -115,6 +115,76 @@ for(i in seq_len(nrow(x))){
  # Repeat, Break, Next
  
  
+search()
+
+
+## VIDEO 9
+# Lexical Scoping
+make.power <- function(n) {
+  pow <- function(x) {
+    x^n
+  }
+  pow
+}
+
+cube <- make.power(3)
+square <- make.power(2)
+
+cube(3)
+
+square(3)
+
+ls(environment(cube))
+get("n", environment(cube))
+
+ls(environment(square))
+get("n", environment(square))
+
+# lexical vs dynamic scoping
+y <- 10
+f <- function(x) {
+  y <- 2
+  y^2 + g(x)
+}
+
+g <- function(x) {
+  x*y
+}
+
+f(3)
+
+## LAST VIDEO
+# Dates and Times in R
+
+x <- as.Date("1970-01-01")
+x
+unclass(x)
+unclass(as.Date("1970-01-02"))
+unclass(as.Date("2070-11-22"))
+
+# times can be coerced froma character strung using the as.POSIXlt or as.POSIXct function
+x <- Sys.time()
+x
+
+p <- as.POSIXlt(x)
+names(unclass(p))
+
+p$sec
+
+# POSIXct format:
+x <- Sys.time()
+x
+unclass(x)
+x$sec
+p <- as.POSIXlt(x)
+names(unclass(p))
+p$sec
+
+## Function strpt
+datestring <- c("February 28, 2021 14:25", "December 9, 2011 9:10")
+x <- strptime(datestring, "%B %d, %Y %H:%M")
+x
+
  
  
  
